@@ -18,7 +18,7 @@ document.addEventListener(`click`, (event) => {
     //Бесплатный визит
     if(target.closest(`#visit-btn`)) modalForm(`#free_visit_form`);
     //Перезвонить
-    //if(target.closest(`.callback-btn`)) modalActions(`#callback_form`);
+    if(target.closest(`#callback-header`)) modalForm(`#callback_form`);
     //Подарок
     if(target.closest(`.fixed-gift`)) gift();
     //Totop

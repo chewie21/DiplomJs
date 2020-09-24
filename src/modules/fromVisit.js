@@ -22,7 +22,8 @@ const formVisit = () => {
             }, () => {
                 popUp.style.display = 'block';
                 popUp.addEventListener(`click`, actionModal);
-                infoMessage(`Ошибка`)});
+                infoMessage(`Ошибка`)
+            });
         }
     });
     const infoMessage = (text) => {
