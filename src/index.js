@@ -2,10 +2,9 @@
 
 import {validInput} from './modules/validator';
 import chooseClub from './modules/chooseClub';
-import modalForm from './modules/modalForm';
 import gift from './modules/gift';
-import formVisit from './modules/fromVisit';
-import footerForm from './modules/footerForm';
+import submitForm from './modules/submitForm';
+
 //Делаем валидными все инпуты
 validInput();
 
@@ -16,12 +15,12 @@ document.addEventListener(`click`, (event) => {
     console.log(`click`);
     let target = event.target;
     //Бесплатный визит
-    if(target.closest(`#visit-btn`)) modalForm(`#free_visit_form`);
+    if(target.closest(`#visit-btn`)) submitForm(`#form2`, `#free_visit_form`);
     //Перезвонить
-    if(target.closest(`#callback-header`)) modalForm(`#callback_form`);
+    if(target.closest(`#callback-header`)) submitForm(`#form1`,`#callback_form`);
     //Подарок
     if(target.closest(`.fixed-gift`)) gift();
-    //Totop
+    //ToTop
     if(target.closest(`#totop`)) {
         event.preventDefault();
         document.querySelector(`.header-main`)
@@ -34,9 +33,14 @@ document.addEventListener('scroll', () => {
    if(pageYOffset < 800) document.querySelector(`#totop`).style.display = `none`;
 });
 
-formVisit();
+//Банер
+submitForm(`#banner-form`);
 
-footerForm();
+//Футер
+submitForm(`#footer_form`);
+
+//Выбор карты на дочерних страницах
+submitForm(`#card_order`);
 
 
 
