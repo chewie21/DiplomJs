@@ -78,7 +78,7 @@ const calc = () => {
             if(!input.checked) time[input.defaultValue] = false;
         });
         console.log(club);
-        console.log(time)
+        console.log(time);
         getPrice();
     };
     getDefaultValue();
@@ -110,12 +110,13 @@ const calc = () => {
             if(key === promoCode.value) {
                 totalPrice = thisTextPrice - thisTextPrice * promo[key];
                 textPrice.textContent = Math.floor(totalPrice);
+                newInput.value = Math.floor(totalPrice);
                 return;
             } else {
                 totalPrice = lastTextPrice;
+                newInput.value = lastTextPrice;
             }
         }
-        textPrice.textContent = totalPrice;
     }
 
     promoCode.addEventListener(`input`, totalPrice);

@@ -1,3 +1,6 @@
 .invalid {
     border: solid 2px red !important;
 }
+.fixed {
+    position: fixed;
+}

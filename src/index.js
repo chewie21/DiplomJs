@@ -5,7 +5,6 @@ import chooseClub from './modules/chooseClub';
 import gift from './modules/gift';
 import submitForm from './modules/submitForm';
 import calc from './modules/calc';
-
 //Делаем валидными все инпуты
 validInput();
 
@@ -13,8 +12,8 @@ validInput();
 chooseClub();
 
 document.addEventListener(`click`, (event) => {
-    console.log(`click`);
     let target = event.target;
+    console.log(target);
     //Бесплатный визит
     if(target.closest(`#visit-btn`)) submitForm(`#form2`, `#free_visit_form`);
     //Перезвонить
@@ -27,21 +26,30 @@ document.addEventListener(`click`, (event) => {
         document.querySelector(`.header-main`)
         .scrollIntoView({behavior: "smooth", block: "start"});
     };
+    //Ссылки меню
+    if(target.closest(`.scrollMenu`)) {
+        event.preventDefault();
+        document.querySelector(`${target.hash}`).scrollIntoView({behavior: "smooth", block: "start"});
+    }
+    //Открытие и закрытие меню
+    if(target.closest(`.close-menu-btn`) || target.closest(`.popup-menu`)) document.querySelector(`.popup-menu`).style.display = `none`;
+    if(target.closest(`#burger`)) document.querySelector(`.popup-menu`).style.display = `flex`;
 });
 
 document.addEventListener('scroll', () => {
-   if(pageYOffset >= 800) document.querySelector(`#totop`).style.display = `block`;
-   if(pageYOffset < 800) document.querySelector(`#totop`).style.display = `none`;
+    //Меню
+    if(pageYOffset >= 186) document.querySelector(`.top-menu`).classList.add(`fixed`);
+    if(pageYOffset < 186) document.querySelector(`.top-menu`).classList.remove(`fixed`);
+    //Кнопка прослистать
+    if(pageYOffset >= 800) document.querySelector(`#totop`).style.display = `block`;
+    if(pageYOffset < 800) document.querySelector(`#totop`).style.display = `none`;
 });
 
 //Банер
 submitForm(`#banner-form`);
-
 //Футер
 submitForm(`#footer_form`);
-
 //Выбор карты на дочерних страницах
 if(document.querySelector(`.card_order_second`)) submitForm(`.card_order_second`);
-
 //Калькулятор
 if(document.querySelector(`.card_order`)) calc();

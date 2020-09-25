@@ -15,6 +15,7 @@ const submitForm = (formClass, thisPopUpSelector, callBack) => {
         if(event.target.closest(`.overlay`) || event.target.closest(`.close_icon`) ||
         event.target.closest(`.close-btn`)) {
             thisPopUp.style.display = 'none';
+            thisPopUp.querySelector(`form`).reset();
             thisPopUp.removeEventListener(`click`, actionModal);
         } 
     };
