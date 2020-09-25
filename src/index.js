@@ -4,6 +4,7 @@ import {validInput} from './modules/validator';
 import chooseClub from './modules/chooseClub';
 import gift from './modules/gift';
 import submitForm from './modules/submitForm';
+import calc from './modules/calc';
 
 //Делаем валидными все инпуты
 validInput();
@@ -40,9 +41,7 @@ submitForm(`#banner-form`);
 submitForm(`#footer_form`);
 
 //Выбор карты на дочерних страницах
-submitForm(`#card_order`);
+if(document.querySelector(`.card_order_second`)) submitForm(`.card_order_second`);
 
-
-
-
-
+//Калькулятор
+if(document.querySelector(`.card_order`)) calc();

@@ -3,7 +3,7 @@
 import {validForm} from './validator';
 import {sendData} from './sendForm';
 
-const submitForm = (formClass, thisPopUpSelector) => {
+const submitForm = (formClass, thisPopUpSelector, callBack) => {
 
     const form = document.querySelector(`${formClass}`),
         inputs = form.querySelectorAll(`input`),
@@ -26,6 +26,14 @@ const submitForm = (formClass, thisPopUpSelector) => {
             popUp.querySelector(`#successMessage`).style.display = `none`;
             popUp.removeEventListener(`click`, actionModal);
         }
+    };
+    const autoActionModal = () => {
+        setTimeout(() => {
+            popUp.style.display = 'none';
+            if(popUp.querySelector(`.errorMessage`)) popUp.querySelector(`.errorMessage`).remove();
+            popUp.querySelector(`#successMessage`).style.display = `none`;
+            popUp.removeEventListener(`click`, actionModal);
+        }, 5000);
     };
     const viePopUp = () => {
         if(thisPopUpSelector) thisPopUp.style.display = `none`;
@@ -79,12 +87,14 @@ const submitForm = (formClass, thisPopUpSelector) => {
             //Промис
             sendData(body, () => {
                 outputMessage(`success`);
+                autoActionModal();
             }, () => {
                 outputMessage(`error`);
+                autoActionModal();
             });
+
         };
-    });
-    
+    }); 
 };
 
 export default submitForm;
