@@ -5,6 +5,7 @@ import chooseClub from './modules/chooseClub';
 import gift from './modules/gift';
 import submitForm from './modules/submitForm';
 import calc from './modules/calc';
+
 //Делаем валидными все инпуты
 validInput();
 
@@ -13,7 +14,7 @@ chooseClub();
 
 document.addEventListener(`click`, (event) => {
     let target = event.target;
-    console.log(target);
+    //console.log(target);
     //Бесплатный визит
     if(target.closest(`#visit-btn`)) submitForm(`#form2`, `#free_visit_form`);
     //Перезвонить
@@ -32,7 +33,7 @@ document.addEventListener(`click`, (event) => {
         document.querySelector(`${target.hash}`).scrollIntoView({behavior: "smooth", block: "start"});
     }
     //Открытие и закрытие меню
-    if(target.closest(`.close-menu-btn`) || target.closest(`.popup-menu`)) document.querySelector(`.popup-menu`).style.display = `none`;
+    if(target.closest(`.close-menu-btn`) || target.closest(`.scrollMenu`)) document.querySelector(`.popup-menu`).style.display = `none`;
     if(target.closest(`#burger`)) document.querySelector(`.popup-menu`).style.display = `flex`;
 });
 

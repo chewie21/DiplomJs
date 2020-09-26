@@ -8,7 +8,8 @@ const calc = () => {
         promoCode = calc.querySelector(`#promoCode`),
         form = calc.querySelector(`.card_order`);
 
-    let lastTextPrice;
+    //Последняя высчитанная цена
+    let lastGetPrice;
 
     const price = {
         mozaika: {
@@ -60,9 +61,9 @@ const calc = () => {
                 thisTime = key;
             }
         }
-        textPrice.textContent = price[thisClub][thisTime];
-        lastTextPrice = price[thisClub][thisTime];
-        newInput.value = lastTextPrice;
+        lastGetPrice = price[thisClub][thisTime];
+        textPrice.textContent = lastGetPrice;
+        newInput.value = lastGetPrice;
     }
 
     //Ставим дефолтные значения со страницы
@@ -77,8 +78,6 @@ const calc = () => {
             if(input.checked) time[input.defaultValue] = true;
             if(!input.checked) time[input.defaultValue] = false;
         });
-        console.log(club);
-        console.log(time);
         getPrice();
     };
     getDefaultValue();
@@ -104,7 +103,8 @@ const calc = () => {
     };
 
     const totalPrice = () => {
-        const thisTextPrice = textPrice.textContent;
+        console.log(lastGetPrice);
+        const thisTextPrice = lastGetPrice;
         let totalPrice;
         for(let key in promo) {
             if(key === promoCode.value) {
@@ -113,8 +113,8 @@ const calc = () => {
                 newInput.value = Math.floor(totalPrice);
                 return;
             } else {
-                totalPrice = lastTextPrice;
-                newInput.value = lastTextPrice;
+                textPrice.textContent = lastGetPrice;
+                newInput.value = lastGetPrice;
             }
         }
     }

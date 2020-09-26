@@ -16,6 +16,7 @@ const submitForm = (formClass, thisPopUpSelector, callBack) => {
         event.target.closest(`.close-btn`)) {
             thisPopUp.style.display = 'none';
             thisPopUp.querySelector(`form`).reset();
+            inputs.forEach(item => item.classList.remove(`invalid`));
             thisPopUp.removeEventListener(`click`, actionModal);
         } 
     };
