@@ -5,6 +5,7 @@ import chooseClub from './modules/chooseClub';
 import gift from './modules/gift';
 import submitForm from './modules/submitForm';
 import calc from './modules/calc';
+import headerSlide from './modules/headerSlide';
 
 //Делаем валидными все инпуты
 validInput();
@@ -46,6 +47,7 @@ document.addEventListener('scroll', () => {
     if(pageYOffset < 800) document.querySelector(`#totop`).style.display = `none`;
 });
 
+
 //Банер
 submitForm(`#banner-form`);
 //Футер
@@ -54,3 +56,7 @@ submitForm(`#footer_form`);
 if(document.querySelector(`.card_order_second`)) submitForm(`.card_order_second`);
 //Калькулятор
 if(document.querySelector(`.card_order`)) calc();
+
+headerSlide(`.head-slider`);
+
+headerSlide(`#gallery`);

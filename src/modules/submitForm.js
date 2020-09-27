@@ -3,7 +3,7 @@
 import {validForm} from './validator';
 import {sendData} from './sendForm';
 
-const submitForm = (formClass, thisPopUpSelector, callBack) => {
+const submitForm = (formClass, thisPopUpSelector) => {
 
     const form = document.querySelector(`${formClass}`),
         inputs = form.querySelectorAll(`input`),
