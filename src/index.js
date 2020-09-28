@@ -38,15 +38,28 @@ document.addEventListener(`click`, (event) => {
     if(target.closest(`#burger`)) document.querySelector(`.popup-menu`).style.display = `flex`;
 });
 
+//Кнопка прослистать
 document.addEventListener('scroll', () => {
-    //Меню
-    if(pageYOffset >= 186) document.querySelector(`.top-menu`).classList.add(`fixed`);
-    if(pageYOffset < 186) document.querySelector(`.top-menu`).classList.remove(`fixed`);
-    //Кнопка прослистать
     if(pageYOffset >= 800) document.querySelector(`#totop`).style.display = `block`;
     if(pageYOffset < 800) document.querySelector(`#totop`).style.display = `none`;
 });
 
+//Меню
+const scrollMenu = () => {
+    if(pageYOffset >= 186) document.querySelector(`.top-menu`).classList.add(`fixed`);
+    if(pageYOffset < 186) document.querySelector(`.top-menu`).classList.remove(`fixed`);
+}
+if(window.innerWidth <= 767) {
+    window.addEventListener(`scroll`, scrollMenu);
+};
+window.addEventListener(`resize`, () => {
+    window.removeEventListener(`scroll`, scrollMenu);
+    if(window.innerWidth <= 767) {
+        window.addEventListener(`scroll`, scrollMenu);
+    } else {
+        document.querySelector(`.top-menu`).classList.remove(`fixed`);
+    }
+});
 
 //Банер
 submitForm(`#banner-form`);
