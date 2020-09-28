@@ -6,7 +6,7 @@ import gift from './modules/gift';
 import submitForm from './modules/submitForm';
 import calc from './modules/calc';
 import headerSlide from './modules/headerSlide';
-
+import servicesSlide from './modules/servicesSlide';
 //Делаем валидными все инпуты
 validInput();
 
@@ -60,3 +60,12 @@ if(document.querySelector(`.card_order`)) calc();
 headerSlide(`.head-slider`);
 
 headerSlide(`#gallery`);
+
+const option = {
+    main: `.services-wrapper`,
+    wrap: `.services-slider`,
+    next: `#arrow-right`,
+    prev: `#arrow-left`
+};
+const thisSlider = new servicesSlide(option);
+thisSlider.init();
