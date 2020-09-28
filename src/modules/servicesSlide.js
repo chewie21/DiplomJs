@@ -1,7 +1,7 @@
 `use strict`
 
 class servicesSlide {
-    constructor({main, wrap, next, prev}) {
+    constructor({main, wrap, next, prev, slidesToShow}) {
         this.main = document.querySelector(main);
         this.wrap = document.querySelector(wrap);
         this.slides = document.querySelector(wrap).children;
@@ -9,7 +9,7 @@ class servicesSlide {
         this.prev = this.main.querySelector(prev);
         this.option = {
             position: 0,
-            slidesToShow: 5,
+            slidesToShow: slidesToShow,
         }; 
     };
 
@@ -35,18 +35,29 @@ class servicesSlide {
         event.preventDefault();
         --this.option.position;
         if(this.option.position < 0) {
-            this.option.position = this.slides.length - 5
+            this.option.position = this.slides.length - this.option.slidesToShow;
         }
-        this.wrap.style.transform = `translateX(-${this.option.position * 20}%)`
+        this.wrap.style.transform = `translateX(-${this.option.position * (100 / this.option.slidesToShow)}%)`
     };
     nextSlider(event) {
         event.preventDefault();
         ++this.option.position;
-        if(this.option.position > this.slides.length - 5) {
+        if(this.option.position > this.slides.length - this.option.slidesToShow) {
             this.option.position = 0;
         }
-        this.wrap.style.transform = `translateX(-${this.option.position * 20}%)`
+        this.wrap.style.transform = `translateX(-${this.option.position * (100 / this.option.slidesToShow)}%)`
     };
+
+    newClass(className) {
+        for(const item of this.slides) {
+            item.classList.add(className);
+        }
+    };
+    removeClass(className) {
+        for(const item of this.slides) {
+            item.classList.remove(className);
+        }
+    }
 };
 
 export default servicesSlide;

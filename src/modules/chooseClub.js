@@ -8,7 +8,6 @@ const chooseClub = () => {
     //Показать меню
     const showMenu = (event) => {
         if(event.target.closest("#club-select-title")) {
-            console.log(`block`)
             select.style.display = `block`;
             document.removeEventListener(`click`, showMenu);
             document.addEventListener(`click`, hideMenu);
@@ -17,7 +16,6 @@ const chooseClub = () => {
     //Скрыть мекю
     const hideMenu = (event) => {
         if((event.target.closest("#club-select-title")) || !event.target.closest(`#club-select-ul`)) {
-            console.log(`none`);
             select.style.display = `none`;
             document.removeEventListener(`click`, hideMenu);
             document.addEventListener(`click`, showMenu);

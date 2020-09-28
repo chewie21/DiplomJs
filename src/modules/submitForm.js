@@ -14,11 +14,12 @@ const submitForm = (formClass, thisPopUpSelector) => {
     const actionThisModal = (event) => {
         if(event.target.closest(`.overlay`) || event.target.closest(`.close_icon`) ||
         event.target.closest(`.close-btn`)) {
+            thisPopUp.removeEventListener(`click`, actionThisModal);
+            form.removeEventListener(`submit`, formSubmit);
             thisPopUp.style.display = 'none';
             thisPopUp.querySelector(`form`).reset();
             inputs.forEach(item => item.classList.remove(`invalid`));
-            thisPopUp.removeEventListener(`click`, actionModal);
-        } 
+        }
     };
     const actionModal = (event) => {
         if(event.target.closest(`.overlay`) || event.target.closest(`.close_icon`) ||
@@ -38,7 +39,11 @@ const submitForm = (formClass, thisPopUpSelector) => {
         }, 5000);
     };
     const viePopUp = () => {
-        if(thisPopUpSelector) thisPopUp.style.display = `none`;
+        if(thisPopUpSelector) {
+            thisPopUp.style.display = `none`;
+            thisPopUp.removeEventListener(`click`, actionThisModal);
+            form.removeEventListener(`submit`, formSubmit);
+        }
         popUp.style.display = 'block';
         outputMessage(`loading`);
     };
@@ -71,7 +76,7 @@ const submitForm = (formClass, thisPopUpSelector) => {
         thisPopUp.addEventListener(`click`, actionThisModal);
     };
 
-    form.addEventListener(`submit`, (event) => {
+    const formSubmit = (event) => {
         event.preventDefault();
         if(validForm(inputs)) {
             //Форматируем данные формы
@@ -94,9 +99,10 @@ const submitForm = (formClass, thisPopUpSelector) => {
                 outputMessage(`error`);
                 autoActionModal();
             });
-
         };
-    }); 
+    }
+
+    form.addEventListener(`submit`, formSubmit);
 };
 
 export default submitForm;

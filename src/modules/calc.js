@@ -103,7 +103,6 @@ const calc = () => {
     };
 
     const totalPrice = () => {
-        console.log(lastGetPrice);
         const thisTextPrice = lastGetPrice;
         let totalPrice;
         for(let key in promo) {

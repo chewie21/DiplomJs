@@ -151,6 +151,11 @@
     padding-right: 20px;
 }
 
+.miniServicesSlide {
+    flex: 0 0 33.3333% !important;
+    padding: 0 !important;
+}
+
 @media(max-width:991px) {
     .headerDots {
         justify-content: center !important; 

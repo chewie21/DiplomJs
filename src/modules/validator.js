@@ -14,13 +14,11 @@ export const validForm = (arr) => {
                     //Удаляем слушатели, чтобы не дублировать клики
                     input.removeEventListener(`input`, checkPhone);
                     //Регулярное выражение для номера
-                    const regNum = /(\+7|8)\d{10}/;
+                    const regNum = /8\d{10}/;
                     if(regNum.test(input.value)) {
-                        console.log(`Phone - true`);
                         input.classList.remove(`invalid`);
                         inputObj[index] = true;
                     } else {
-                        console.log(`Phone - false`);
                         input.classList.add(`invalid`);
                         //Запускаем проверку на изменение
                         input.addEventListener(`input`, checkPhone);
@@ -35,11 +33,9 @@ export const validForm = (arr) => {
                     //Удаляем слушатели, чтобы не дублировать клики
                     input.removeEventListener(`input`, checkName);
                     if(input.value !== ``) {
-                        console.log(`Name - true`);
                         input.classList.remove(`invalid`);
                         inputObj[index] = true;
                     } else {
-                        console.log(`name - false`);
                         input.classList.add(`invalid`);
                         //Запускаем проверку на изменение
                         input.addEventListener(`input`, checkName);
@@ -52,7 +48,6 @@ export const validForm = (arr) => {
             //Проверяем тип для определения чекбокса
             if (input.type === `checkbox`) {
                 if(input.checked) {
-                    console.log(`check`);
                     inputObj[index] = true;
                 } else {
                     inputObj[index] = false;
@@ -76,10 +71,8 @@ export const validForm = (arr) => {
             if (input.type === `radio`) {
                 if(inputObj[`radio`] !== true) {
                     if(input.checked) {
-                        console.log(`check`);
                         inputObj[`radio`] = true;
                     } else {
-                        console.log(`notcheck`);
                         inputObj[`radio`] = false;
                         const newAnimation = () => {
                             let counter = 0;
@@ -117,6 +110,9 @@ export const validInput = () => {
             input.addEventListener(`input`, () => {
                 const regExp = /[^\d]/g;
                 input.value = input.value.replace(regExp, '');
+                if(input.value.length >= 11) {
+                    input.value = input.value.substring(0,11);
+                }
             });
         } else if (input.placeholder === `Ваше имя...`) {
             input.addEventListener(`input`, () => {

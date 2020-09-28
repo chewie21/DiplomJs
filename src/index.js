@@ -15,7 +15,6 @@ chooseClub();
 
 document.addEventListener(`click`, (event) => {
     let target = event.target;
-    //console.log(target);
     //Бесплатный визит
     if(target.closest(`#visit-btn`)) submitForm(`#form2`, `#free_visit_form`);
     //Перезвонить
@@ -38,6 +37,20 @@ document.addEventListener(`click`, (event) => {
     if(target.closest(`#burger`)) document.querySelector(`.popup-menu`).style.display = `flex`;
 });
 
+//Слайдеры
+headerSlide(`.head-slider`);
+headerSlide(`#gallery`);
+
+const option = {
+    main: `.services-wrapper`,
+    wrap: `.services-slider`,
+    next: `#arrow-right`,
+    prev: `#arrow-left`,
+    slidesToShow: 5
+};
+const thisSlider = new servicesSlide(option);
+thisSlider.init();
+
 //Кнопка прослистать
 document.addEventListener('scroll', () => {
     if(pageYOffset >= 800) document.querySelector(`#totop`).style.display = `block`;
@@ -51,13 +64,22 @@ const scrollMenu = () => {
 }
 if(window.innerWidth <= 767) {
     window.addEventListener(`scroll`, scrollMenu);
+    thisSlider.option.slidesToShow = 3;
+    thisSlider.option.position = 0;
+    thisSlider.newClass(`miniServicesSlide`);
 };
 window.addEventListener(`resize`, () => {
     window.removeEventListener(`scroll`, scrollMenu);
     if(window.innerWidth <= 767) {
         window.addEventListener(`scroll`, scrollMenu);
+        thisSlider.option.slidesToShow = 3;
+        thisSlider.option.position = 0;
+        thisSlider.newClass(`miniServicesSlide`);
     } else {
         document.querySelector(`.top-menu`).classList.remove(`fixed`);
+        thisSlider.option.slidesToShow = 5;
+        thisSlider.option.position = 0;
+        thisSlider.removeClass(`miniServicesSlide`);
     }
 });
 
@@ -70,15 +92,4 @@ if(document.querySelector(`.card_order_second`)) submitForm(`.card_order_second`
 //Калькулятор
 if(document.querySelector(`.card_order`)) calc();
 
-headerSlide(`.head-slider`);
 
-headerSlide(`#gallery`);
-
-const option = {
-    main: `.services-wrapper`,
-    wrap: `.services-slider`,
-    next: `#arrow-right`,
-    prev: `#arrow-left`
-};
-const thisSlider = new servicesSlide(option);
-thisSlider.init();
